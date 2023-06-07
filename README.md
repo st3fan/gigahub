@@ -68,5 +68,5 @@ The `GIGAHUB_PASSWORD` is the administrative password that you also use to log i
 
 I have only tested it with my own InfluxDB 2.7 server but it probably works fine with their hosted service too.
 
-> Feel free to leave a bug report or open a feature request at [https://github.com/st3fan/gigahub/issues](github.com/st3fan/gigahub/issues).
+> Feel free to leave a bug report or open a feature request at [github.com/st3fan/gigahub/issues](https://github.com/st3fan/gigahub/issues).
 
