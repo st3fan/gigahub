@@ -12,6 +12,7 @@ import urllib.parse
 
 import requests
 
+GIGAHUB_URL = os.getenv("GIGAHUB_URL") or "http://192.168.2.1";
 
 GUI_PASSWORD_SALT = ""
 
@@ -19,8 +20,8 @@ XMO_REQUEST_NO_ERR = 16777216
 
 HEADERS = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
-    "Origin": "http://192.168.2.1",
-    "Referer": "http://192.168.2.1/",
+    "Origin": GIGAHUB_URL,
+    "Referer": GIGAHUB_URL,
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
     "X-Requested-With": "XMLHttpRequest",
 }
@@ -110,7 +111,7 @@ def sign_request(
     return request
 
 
-def open_session(*, endpoint: str = "http://192.168.2.1/cgi/json-req", username: str, password: str) -> tuple[dict, dict]:
+def open_session(*, endpoint: str = GIGAHUB_URL+"/cgi/json-req", username: str, password: str) -> tuple[dict, dict]:
     login_request = make_request(id=0, session_id=0, priority=True, actions=[make_login_action(id=0, username=username)])
     login_request = sign_request(request=login_request, request_index=0, username=username, password=password)
 
@@ -141,7 +142,7 @@ def open_session(*, endpoint: str = "http://192.168.2.1/cgi/json-req", username:
     return session, reply
 
 
-def open_guest_session(*, endpoint: str = "http://192.168.2.1/cgi/json-req"):
+def open_guest_session(*, endpoint: str = GIGAHUB_URL+"/cgi/json-req"):
     return open_session(endpoint=endpoint, username="guest", password="")
 
 
